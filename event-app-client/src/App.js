@@ -4,7 +4,6 @@ import { EventForm } from './EventForm';
 function App() {
   return (
     <>
-      Event app
       <EventForm />
     </>
   );

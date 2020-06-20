@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { connect } from 'react-redux';
 import DatePicker from 'react-datepicker/es';
-import { eventFormConfiguration, validateFormValues } from './eventFormUtils';
+import { eventFormConfiguration, validateFormValues, initialStateValue} from './eventFormUtils';
 import { sendEventData } from '../actions/eventActions';
 import './eventForm.scss';
 
@@ -14,15 +14,14 @@ export const EventFormComponent = (props) => {
 		dispatch,
 	} = props;
 
-	const [eventFormValues, setEventFormValues] = useState({
-		firstName: '',
-		lastName: '',
-		email: '',
-	});
+	const [eventFormValues, setEventFormValues] = useState(initialStateValue);
 	const [eventFormErrors, setEventFormErrors] = useState({});
 	const [eventDate, setEventDate] = useState(new Date());
+	const [formStatus, setFormStatus] = useState(false);
+	const firstRender = useRef(true);
 
 	const handleInputChange = e => {
+		setFormStatus(false);
 		const { name, value } = e.target;
 
 		setEventFormValues({
@@ -40,16 +39,20 @@ export const EventFormComponent = (props) => {
 	}
 
 	useEffect(() => {
-		if (Object.keys(eventFormErrors).length === 0) {
+		if (firstRender.current) {
+			firstRender.current = false
+		} else if (Object.keys(eventFormErrors).length === 0) {
 			dispatch(sendEventData({ ...eventFormValues, eventDate }));
+			setFormStatus(true);
+			setEventFormValues(initialStateValue);
 		}
-	}, [eventFormValues])
+	}, [eventFormErrors])
 
 	return (
 		<div className="event-form">
 
 			{eventFormConfiguration.map(({ name, id, type, placeholder }) => (
-				<div key={id}>
+				<div key={id} className="event-form__element">
 					<input
 						name={name}
 						id={id}
@@ -83,7 +86,7 @@ export const EventFormComponent = (props) => {
 			</button>
 
 			{sendingEventDataFailed ? 'An error occurred while submitting the form!' : null}
-
+			{formStatus ? 'The form has been sent successfully' : null}
 		</div>
 	)
 }

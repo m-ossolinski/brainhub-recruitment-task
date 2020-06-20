@@ -4,10 +4,15 @@
   justify-content: center;
   flex-direction: column;
 
+  &__element {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__input {
     width: 500px;
     height: 50px;
-    margin: 14px;
+    margin: 14px 0;
 
     &-error-msg {
       color: red;
