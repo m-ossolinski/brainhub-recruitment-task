@@ -23,7 +23,7 @@ export const eventFormConfiguration = [{
 	placeholder: 'E-mail'
 }];
 
-const EVENT_FORM_ERROR_MESSAGES = {
+export const EVENT_FORM_ERROR_MESSAGES = {
 	firstName: 'First name is required!',
 	lastName: 'Last name is required!',
 	emailRequired: 'Email is required!',
