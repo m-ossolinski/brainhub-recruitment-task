@@ -19,6 +19,7 @@ const EVENT_FORM_ERROR_MESSAGES = {
 	lastName: 'Last name is required!',
 	emailRequired: 'Email is required!',
 	email: 'Valid email is required!',
+	eventDate: 'Event date must be selected!',
 }
 
 export const validateFormValues = (values) => {
@@ -27,7 +28,10 @@ export const validateFormValues = (values) => {
 		firstName,
 		lastName,
 		email,
+		eventDate,
 	} = values;
+
+	console.log(values);
 
 	if (!firstName) {
 		errors.firstName = EVENT_FORM_ERROR_MESSAGES.firstName;
@@ -43,6 +47,10 @@ export const validateFormValues = (values) => {
 
 	if (email && !EMAIL_PATTERN.test(email)) {
 		errors.email = EVENT_FORM_ERROR_MESSAGES.email;
+	}
+
+	if (!eventDate) {
+		errors.eventDate = EVENT_FORM_ERROR_MESSAGES.eventDate;
 	}
 
 	return errors;
