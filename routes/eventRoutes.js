@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Event = mongoose.model('events');
 
 module.exports = (app) => {
-	app.post('/event', async (req, res) => {
+	app.post('/api/event', async (req, res) => {
 		const {
 			firstName,
 			lastName,
@@ -19,8 +19,8 @@ module.exports = (app) => {
 		});
 
 		try {
-			await event.save().status(200);
-			res.send('Event app');
+			await event.save();
+			res.send('Event app').status(200);
 
 		} catch (err) {
 			res.status(422).send(err);

@@ -4,14 +4,17 @@ export const eventFormConfiguration = [{
 	name: 'firstName',
 	id: 'firstName',
 	type: 'text',
+	placeholder: 'First name'
 }, {
 	name: 'lastName',
 	id: 'lastName',
 	type: 'text',
+	placeholder: 'Last name'
 }, {
 	name: 'email',
 	id: 'email',
 	type: 'email',
+	placeholder: 'E-mail'
 }];
 
 const EVENT_FORM_ERROR_MESSAGES = {
@@ -30,8 +33,6 @@ export const validateFormValues = (values) => {
 		email,
 		eventDate,
 	} = values;
-
-	console.log(values);
 
 	if (!firstName) {
 		errors.firstName = EVENT_FORM_ERROR_MESSAGES.firstName;

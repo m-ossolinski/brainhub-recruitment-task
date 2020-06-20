@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import DatePicker from 'react-datepicker/es';
 import { eventFormConfiguration, validateFormValues } from './eventFormUtils';
 import { sendEventData } from '../actions/eventActions';
+import './eventForm.scss';
 
 export const EventFormComponent = (props) => {
 	const {
@@ -14,9 +15,9 @@ export const EventFormComponent = (props) => {
 	} = props;
 
 	const [eventFormValues, setEventFormValues] = useState({
-		firstName: 'testowy',
-		lastName: 'request',
-		email: 'testowy@ma.il',
+		firstName: '',
+		lastName: '',
+		email: '',
 	});
 	const [eventFormErrors, setEventFormErrors] = useState({});
 	const [eventDate, setEventDate] = useState(new Date());
@@ -31,7 +32,9 @@ export const EventFormComponent = (props) => {
 	}
 
 	const handleFormSubmit = (ev) => {
-		ev.preventDefault();
+		if (ev) {
+			ev.preventDefault();
+		}
 
 		setEventFormErrors(validateFormValues({ ...eventFormValues, eventDate }));
 	}
@@ -40,23 +43,26 @@ export const EventFormComponent = (props) => {
 		if (Object.keys(eventFormErrors).length === 0) {
 			dispatch(sendEventData({ ...eventFormValues, eventDate }));
 		}
-	}, [eventFormErrors])
+	}, [eventFormValues])
 
 	return (
-		<div>
+		<div className="event-form">
 
-			{eventFormConfiguration.map(({ name, id, type }) => (
-				<>
+			{eventFormConfiguration.map(({ name, id, type, placeholder }) => (
+				<div key={id}>
 					<input
 						name={name}
 						id={id}
-						key={id}
 						type={type}
 						value={eventFormValues[name]}
 						onChange={handleInputChange}
+						className="event-form__input"
+						placeholder={placeholder}
 					/>
-					<span>{eventFormErrors[name]}</span>
-				</>
+					<span className="event-form__input-error-msg">
+						{eventFormErrors[name]}
+					</span>
+				</div>
 			))}
 
 			<div>
@@ -71,8 +77,9 @@ export const EventFormComponent = (props) => {
 			<button
 				onClick={handleFormSubmit}
 				disabled={sendingEventData}
+				className="event-form__submit-btn"
 			>
-				Click2
+				{sendingEventData ? 'Sending...' : 'Send'}
 			</button>
 
 			{sendingEventDataFailed ? 'An error occurred while submitting the form!' : null}
