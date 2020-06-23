@@ -25,3 +25,9 @@ Then navigate to client app and also run `npm i` or `npm install`.
 
 If everything has been installed back to the main folder and run `npm run dev` command.
 
+
+### tests
+
+Tests have been implemented only on the frontend side because of installing dependencies at backend the frontend tests have stopped working (create-react-app have some problem with installing foreign Jest).
+
+Mocking components such as DatePicker causes errors because the repository doesn't have an environment created using Babel and webpack.
