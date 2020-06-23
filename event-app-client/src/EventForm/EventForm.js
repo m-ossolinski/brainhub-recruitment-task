@@ -46,7 +46,7 @@ export const EventFormComponent = (props) => {
 			setFormStatus(true);
 			setEventFormValues(initialStateValue);
 		}
-	}, [eventFormErrors, eventDate])
+	}, [eventFormErrors])
 
 	return (
 		<div className="event-form">
