@@ -11,6 +11,10 @@ module.exports = (app) => {
 			eventDate,
 		} = req.body;
 
+		if (!firstName || !lastName || !email || !eventDate) {
+			return res.status(404).send('An error occured. all data on the form must be sent');
+		}
+
 		const event = new Event({
 			firstName,
 			lastName,

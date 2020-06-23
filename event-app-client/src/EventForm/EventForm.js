@@ -19,8 +19,7 @@ export const EventFormComponent = (props) => {
 	const [eventDate, setEventDate] = useState(new Date());
 	const [formStatus, setFormStatus] = useState(false);
 	const firstRender = useRef(true);
-console.log(eventDate);
-console.log(typeof eventDate);
+
 	const handleInputChange = e => {
 		setFormStatus(false);
 		const { name, value } = e.target;
@@ -47,7 +46,7 @@ console.log(typeof eventDate);
 			setFormStatus(true);
 			setEventFormValues(initialStateValue);
 		}
-	}, [eventFormErrors])
+	}, [eventFormErrors, eventDate])
 
 	return (
 		<div className="event-form">
