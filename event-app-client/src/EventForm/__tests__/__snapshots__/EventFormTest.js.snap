@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render component should render EventFormComponent 1`] = `
+"<div class=\\"event-form\\">
+  <div class=\\"event-form__element\\"><input name=\\"firstName\\" id=\\"firstName\\" type=\\"text\\" class=\\"event-form__input\\" placeholder=\\"First name\\" value=\\"\\"><span class=\\"event-form__input-error-msg\\"></span></div>
+  <div class=\\"event-form__element\\"><input name=\\"lastName\\" id=\\"lastName\\" type=\\"text\\" class=\\"event-form__input\\" placeholder=\\"Last name\\" value=\\"\\"><span class=\\"event-form__input-error-msg\\"></span></div>
+  <div class=\\"event-form__element\\"><input name=\\"email\\" id=\\"email\\" type=\\"email\\" class=\\"event-form__input\\" placeholder=\\"E-mail\\" value=\\"\\"><span class=\\"event-form__input-error-msg\\"></span></div>
+  <div></div><button class=\\"event-form__submit-btn\\">Send</button>
+</div>"
+`;
